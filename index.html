@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Samsung Monitors - Eagle Electronics</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .hero {
+        background-color: #0051a8; /* Fallback color if image fails to load */
+        color: white;
+        position: relative;
+        min-height: 300px; /* Minimum height for visibility */
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-overlay {
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 576px) {
+        .hero {
+          min-height: 200px; /* Smaller height on mobile */
+        }
+        .hero-overlay h1 {
+          font-size: 1.5rem; /* Smaller font on mobile */
+        }
+        .hero-overlay p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Eagle Electronics</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#catalog">Catalog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">Contact</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-center py-5" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; image-rendering: crisp-edges;">
+    <div class="container hero-overlay">
+      <h1>Exclusive Deals on Samsung Monitors</h1>
+      <p>Low Prices, Free Delivery & Installation</p>
+      <a href="#catalog" class="btn btn-light btn-lg">View Deals</a>
+    </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalog" class="container my-5">
+      <h2 class="text-center mb-4">Our Monitors</h2>
+
+      <!-- Search, Filter, and Sort Controls -->
+      <div class="row mb-4">
+        <div class="col-md-4 col-sm-12 mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="searchInput"
+            placeholder="Search by name or model..."
+          />
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+          <select class="form-select" id="sizeFilter">
+            <option value="">All Sizes</option>
+            <option value="22">22"</option>
+            <option value="24">24"</option>
+            <option value="27">27"</option>
+            <option value="32">32"</option>
+            <option value="43">43"</option>
+            <option value="49">49"</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+          <select class="form-select" id="resolutionFilter">
+            <option value="">All Resolutions</option>
+            <option value="FHD">FHD</option>
+            <option value="QHD">QHD</option>
+            <option value="UHD">UHD</option>
+            <option value="DQHD">DQHD</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+          <select class="form-select" id="displayTypeFilter">
+            <option value="">All Display Types</option>
+            <option value="Flat">Flat</option>
+            <option value="Curved (1800R)">Curved</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-12 mb-2">
+          <select class="form-select" id="sortSelect">
+            <option value="">Sort By</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="hertz-desc">Refresh Rate: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="row" id="product-grid"></div>
+    </section>
+
+    <!-- Inquiry Modal -->
+    <div class="modal fade" id="inquiryModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Inquire About Monitors</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="inquiryForm"
+              action="https://formspree.io/your@email.com"
+              method="POST"
+            >
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contact" class="form-label">Contact No.</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="contact"
+                  name="contact"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea
+                  class="form-control"
+                  id="address"
+                  name="address"
+                  required
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="models" class="form-label"
+                  >Models Interested In</label
+                >
+                <select
+                  class="form-select"
+                  id="models"
+                  name="models"
+                  multiple
+                  required
+                ></select>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-light text-center py-3">
+      <p>Contact us: +919176645754 | +917540022142</p>
+      <p>Address: xyz</p>
+      <a href="https://wa.me/919444075753" class="btn btn-success btn-sm"
+        >Chat on WhatsApp</a
+      >
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let allProducts = []; // Store the full product list globally
+
+      // Function to populate the product grid
+      function populateProductGrid(products) {
+        const productGrid = document.getElementById("product-grid");
+        productGrid.innerHTML = ""; // Clear existing content
+        products.forEach((product) => {
+          const savings = product.marketPrice - product.discountedPrice;
+          const card = document.createElement("div");
+          card.className = "col-md-4 col-sm-6 mb-4";
+          card.innerHTML = `
+          <div class="card product-card">
+            <img src="bg1.png" class="card-img-top" alt="${product.name}">
+            <div class="card-body">
+              <h5 class="card-title">${product.name} - ${product.model}</h5>
+              <p class="card-text">
+                Size: ${product.size}"<br>
+                Resolution: ${product.resolution}<br>
+                Refresh Rate: ${product.hertz}Hz<br>
+                Display: ${product.displayType}
+              </p>
+              <p class="card-text">
+                <strong>₹${product.discountedPrice}</strong> 
+                <span class="market-price">₹${product.marketPrice}</span><br>
+                <small class="text-success">Save ₹${savings}</small>
+              </p>
+              <span class="badge badge-free">Free Delivery</span>
+              <span class="badge badge-free">Free Installation</span>
+              <button class="btn btn-primary inquire-btn mt-2" data-model="${product.model}">Inquire Now</button>
+            </div>
+          </div>
+        `;
+          productGrid.appendChild(card);
+        });
+
+        // Re-attach event listeners for inquire buttons
+        document.querySelectorAll(".inquire-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const model = btn.getAttribute("data-model");
+            const modelsSelect = document.getElementById("models");
+            const option = modelsSelect.querySelector(
+              `option[value="${model}"]`
+            );
+            if (option) option.selected = true;
+            const modal = new bootstrap.Modal(
+              document.getElementById("inquiryModal")
+            );
+            modal.show();
+          });
+        });
+      }
+
+      // Function to populate the models dropdown
+      function populateModelsDropdown(products) {
+        const modelsSelect = document.getElementById("models");
+        modelsSelect.innerHTML = ""; // Clear existing options
+        products.forEach((product) => {
+          const option = document.createElement("option");
+          option.value = product.model;
+          option.textContent = `${product.name} - ${product.model}`;
+          modelsSelect.appendChild(option);
+        });
+      }
+
+      // Function to filter and sort products
+      function updateProductDisplay() {
+        let filteredProducts = [...allProducts];
+
+        // Search
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        if (searchTerm) {
+          filteredProducts = filteredProducts.filter(
+            (product) =>
+              product.name.toLowerCase().includes(searchTerm) ||
+              product.model.toLowerCase().includes(searchTerm)
+          );
+        }
+
+        // Filters
+        const sizeFilter = document.getElementById("sizeFilter").value;
+        if (sizeFilter) {
+          filteredProducts = filteredProducts.filter(
+            (product) => product.size == sizeFilter
+          );
+        }
+
+        const resolutionFilter =
+          document.getElementById("resolutionFilter").value;
+        if (resolutionFilter) {
+          filteredProducts = filteredProducts.filter(
+            (product) => product.resolution === resolutionFilter
+          );
+        }
+
+        const displayTypeFilter =
+          document.getElementById("displayTypeFilter").value;
+        if (displayTypeFilter) {
+          filteredProducts = filteredProducts.filter(
+            (product) => product.displayType === displayTypeFilter
+          );
+        }
+
+        // Sort
+        const sortValue = document.getElementById("sortSelect").value;
+        if (sortValue === "price-asc") {
+          filteredProducts.sort(
+            (a, b) => a.discountedPrice - b.discountedPrice
+          );
+        } else if (sortValue === "price-desc") {
+          filteredProducts.sort(
+            (a, b) => b.discountedPrice - a.discountedPrice
+          );
+        } else if (sortValue === "hertz-desc") {
+          filteredProducts.sort((a, b) => b.hertz - a.hertz);
+        }
+
+        // Update the grid with filtered and sorted products
+        populateProductGrid(filteredProducts);
+      }
+
+      // Fetch the JSON file and initialize the page
+      fetch("products.json")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((products) => {
+          allProducts = products; // Store the full list
+          populateProductGrid(products); // Initial display
+          populateModelsDropdown(products); // Populate dropdown
+
+          // Add event listeners for search, filter, and sort
+          document
+            .getElementById("searchInput")
+            .addEventListener("input", updateProductDisplay);
+          document
+            .getElementById("sizeFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("resolutionFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("displayTypeFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("sortSelect")
+            .addEventListener("change", updateProductDisplay);
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error);
+          document.getElementById("product-grid").innerHTML =
+            '<p class="text-danger">Failed to load products. Please try again later.</p>';
+        });
+    </script>
+  </body>
+</html>
