@@ -9,6 +9,17 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <style>
+      .navbar-brand {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 1.125rem;
+        font-weight: 500;
+        padding: 0.75rem 1rem;
+      }
+
       .hero {
         background-color: #0051a8;
         color: white;
@@ -22,6 +33,25 @@
         padding: 20px;
         border-radius: 10px;
       }
+      .hero-overlay h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .hero-overlay h5 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ffffff; /* A contrasting color for urgency */
+        margin-bottom: 2rem;
+      }
+
+      .hero-overlay a.btn {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem 2rem;
+      }
+
       @media (max-width: 576px) {
         .hero {
           min-height: 200px;
@@ -29,7 +59,13 @@
         .hero-overlay h1 {
           font-size: 1.5rem;
         }
+        .hero-overlay h5 {
+          font-size: 1rem;
+        }
         .hero-overlay p {
+          font-size: 1rem;
+        }
+        .hero-overlay a.btn {
           font-size: 1rem;
         }
       }
@@ -110,7 +146,7 @@
     >
       <div class="container hero-overlay">
         <h1>Exclusive Deals on Samsung Monitors</h1>
-        <p>Low Prices, Free Delivery & Installation</p>
+        <h5>Low Price(s) Guarantee, Free Delivery & Installation</h5>
         <a href="#catalog" class="btn btn-light btn-lg">View Deals</a>
       </div>
     </section>
@@ -283,7 +319,10 @@
         </div>
       </div>
     </div>
-
+    <!-- About Us Section -->
+    <section id="about" class="container my-5">
+      <!-- (Insert the About Us Section code here) -->
+    </section>
     <!-- Footer -->
     <footer id="footer" class="bg-light text-center py-3">
       <p>Contact us: +919176645754 | +917540022142</p>
@@ -490,7 +529,12 @@
         } else if (sortValue === "hertz-desc") {
           filteredProducts.sort((a, b) => b.hertz - a.hertz);
         }
-        populateProductGrid(filteredProducts);
+        if (filteredProducts.length === 0) {
+          document.getElementById("product-grid").innerHTML =
+            '<p class="text-danger">Please contact for updates regarding other models.</p>';
+        } else {
+          populateProductGrid(filteredProducts);
+        }
       }
 
       // Fetch products.json and initialize the page
