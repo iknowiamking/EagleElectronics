@@ -307,7 +307,7 @@
           card.className = "col-md-4 col-sm-6 mb-4";
           card.innerHTML = `
             <div class="card product-card">
-              <img src="bg1.png" class="card-img-top" alt="${product.name}">
+              <img src="products_image/${product.model}.avif" class="card-img-top" alt="${product.name}">
               <div class="card-body">
                 <h5 class="card-title">${product.name} - ${product.model}</h5>
                 <p class="card-text">
@@ -318,7 +318,7 @@
                 </p>
                 <p class="card-text">
                   <strong>₹${product.discountedPrice}</strong> 
-                  <span class="market-price">₹${product.marketPrice}</span><br>
+                  <small class="market-price" style="text-decoration: line-through; font-style: italic;">₹${product.marketPrice}</small><br>
                   <small class="text-success">Save ₹${savings}</small>
                 </p>
                 <span class="badge bg-success">Free Delivery</span>
