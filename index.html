@@ -45,6 +45,26 @@
         color: #fff;
         font-weight: bold;
       }
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #0d6efd;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        display: none; /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .back-to-top:hover {
+        background-color: #0b5ed7;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -74,11 +94,19 @@
         </div>
       </div>
     </header>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">&uarr;</button>
 
     <!-- Hero Section -->
     <section
       class="hero text-center py-5"
-      style="background-image: url('bg2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; image-rendering: crisp-edges;"
+      style="
+        background-image: url('bg2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        image-rendering: crisp-edges;
+      "
     >
       <div class="container hero-overlay">
         <h1>Exclusive Deals on Samsung Monitors</h1>
@@ -146,7 +174,11 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Inquire About Monitors</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="inquiryForm">
@@ -178,6 +210,8 @@
                   id="contact"
                   name="entry.1786640029"
                   required
+                  pattern="\d{10}"
+                  title="Please enter a valid 10-digit phone number"
                 />
               </div>
               <div class="mb-3">
@@ -202,7 +236,11 @@
                   >
                     Select Models
                   </button>
-                  <ul class="dropdown-menu p-2" style="max-height: 250px; overflow-y: auto;" id="modelList">
+                  <ul
+                    class="dropdown-menu p-2"
+                    style="max-height: 250px; overflow-y: auto"
+                    id="modelList"
+                  >
                     <input
                       type="text"
                       class="form-control mb-2"
@@ -215,7 +253,12 @@
                 <!-- Container for selected model tiles -->
                 <div id="selectedModelsContainer" class="mt-2"></div>
                 <!-- Hidden input to hold the selected models -->
-                <input type="hidden" id="selectedModels" name="entry.1969477151" required />
+                <input
+                  type="hidden"
+                  id="selectedModels"
+                  name="entry.1969477151"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
@@ -228,7 +271,11 @@
               <button type="submit" class="btn btn-primary">
                 Submit Inquiry
               </button>
-              <p id="formSuccess" class="text-success mt-2" style="display: none">
+              <p
+                id="formSuccess"
+                class="text-success mt-2"
+                style="display: none"
+              >
                 Thank you! Your inquiry has been submitted.
               </p>
             </form>
@@ -288,12 +335,16 @@
           btn.addEventListener("click", () => {
             const model = btn.getAttribute("data-model");
             // If the model exists in the improved UI list, mark it as selected
-            const checkbox = document.querySelector(`#modelList input[type="checkbox"][value="${model}"]`);
+            const checkbox = document.querySelector(
+              `#modelList input[type="checkbox"][value="${model}"]`
+            );
             if (checkbox) {
               checkbox.checked = true;
               addModelToSelection(model);
             }
-            const modal = new bootstrap.Modal(document.getElementById("inquiryModal"));
+            const modal = new bootstrap.Modal(
+              document.getElementById("inquiryModal")
+            );
             modal.show();
           });
         });
@@ -302,7 +353,9 @@
       // Improved Models Selection UI Variables
       let selectedModelsSet = new Set();
       const modelListEl = document.getElementById("modelList");
-      const selectedModelsContainer = document.getElementById("selectedModelsContainer");
+      const selectedModelsContainer = document.getElementById(
+        "selectedModelsContainer"
+      );
       const selectedModelsInput = document.getElementById("selectedModels");
       const modelDropdownBtn = document.getElementById("modelDropdown");
 
@@ -347,7 +400,9 @@
         if (selectedModelsSet.has(modelCode)) {
           selectedModelsSet.delete(modelCode);
           // Uncheck the corresponding checkbox if visible
-          const checkbox = document.querySelector(`#modelList input[type="checkbox"][value="${modelCode}"]`);
+          const checkbox = document.querySelector(
+            `#modelList input[type="checkbox"][value="${modelCode}"]`
+          );
           if (checkbox) {
             checkbox.checked = false;
           }
@@ -369,21 +424,33 @@
           selectedModelsContainer.appendChild(tile);
         });
         selectedModelsInput.value = selectedArray.join(", ");
-        modelDropdownBtn.innerText = selectedArray.length ? `${selectedArray.length} models selected` : "Select Models";
+        modelDropdownBtn.innerText = selectedArray.length
+          ? `${selectedArray.length} models selected`
+          : "Select Models";
       }
 
       // Filter the models in the dropdown based on the search input
       function filterModels() {
-        const searchValue = document.getElementById("modelSearch").value.toLowerCase();
-        document.querySelectorAll("#modelList .dropdown-item").forEach((item) => {
-          item.style.display = item.textContent.toLowerCase().includes(searchValue) ? "block" : "none";
-        });
+        const searchValue = document
+          .getElementById("modelSearch")
+          .value.toLowerCase();
+        document
+          .querySelectorAll("#modelList .dropdown-item")
+          .forEach((item) => {
+            item.style.display = item.textContent
+              .toLowerCase()
+              .includes(searchValue)
+              ? "block"
+              : "none";
+          });
       }
 
       // Update product display based on search and filters
       function updateProductDisplay() {
         let filteredProducts = [...allProducts];
-        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
         if (searchTerm) {
           filteredProducts = filteredProducts.filter(
             (product) =>
@@ -397,13 +464,15 @@
             (product) => product.size == sizeFilter
           );
         }
-        const resolutionFilter = document.getElementById("resolutionFilter").value;
+        const resolutionFilter =
+          document.getElementById("resolutionFilter").value;
         if (resolutionFilter) {
           filteredProducts = filteredProducts.filter(
             (product) => product.resolution === resolutionFilter
           );
         }
-        const displayTypeFilter = document.getElementById("displayTypeFilter").value;
+        const displayTypeFilter =
+          document.getElementById("displayTypeFilter").value;
         if (displayTypeFilter) {
           filteredProducts = filteredProducts.filter(
             (product) => product.displayType === displayTypeFilter
@@ -411,9 +480,13 @@
         }
         const sortValue = document.getElementById("sortSelect").value;
         if (sortValue === "price-asc") {
-          filteredProducts.sort((a, b) => a.discountedPrice - b.discountedPrice);
+          filteredProducts.sort(
+            (a, b) => a.discountedPrice - b.discountedPrice
+          );
         } else if (sortValue === "price-desc") {
-          filteredProducts.sort((a, b) => b.discountedPrice - a.discountedPrice);
+          filteredProducts.sort(
+            (a, b) => b.discountedPrice - a.discountedPrice
+          );
         } else if (sortValue === "hertz-desc") {
           filteredProducts.sort((a, b) => b.hertz - a.hertz);
         }
@@ -432,11 +505,21 @@
           allProducts = products;
           populateProductGrid(products);
           populateModelList(); // Populate improved model selection UI
-          document.getElementById("searchInput").addEventListener("input", updateProductDisplay);
-          document.getElementById("sizeFilter").addEventListener("change", updateProductDisplay);
-          document.getElementById("resolutionFilter").addEventListener("change", updateProductDisplay);
-          document.getElementById("displayTypeFilter").addEventListener("change", updateProductDisplay);
-          document.getElementById("sortSelect").addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("searchInput")
+            .addEventListener("input", updateProductDisplay);
+          document
+            .getElementById("sizeFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("resolutionFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("displayTypeFilter")
+            .addEventListener("change", updateProductDisplay);
+          document
+            .getElementById("sortSelect")
+            .addEventListener("change", updateProductDisplay);
         })
         .catch((error) => {
           console.error("Error fetching products:", error);
@@ -445,33 +528,57 @@
         });
 
       // Handle inquiry form submission to Google Forms
-      document.getElementById("inquiryForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const form = event.target;
-        const formData = new FormData(form);
-        fetch(
-          "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_Lf5UxcUb1mswgWyHVMtlfjjE1werx7ks0StKVsiPK0PaYQ/formResponse",
-          {
-            method: "POST",
-            body: formData,
-            mode: "no-cors",
-          }
-        )
-          .then(() => {
-            document.getElementById("formSuccess").style.display = "block";
-            form.reset();
-            // Clear improved UI selections
-            selectedModelsSet.clear();
-            updateSelectedModelsUI();
-            // Close modal after 2 seconds
-            setTimeout(() => {
-              const modal = bootstrap.Modal.getInstance(document.getElementById("inquiryModal"));
-              modal.hide();
-            }, 2000);
-          })
-          .catch((error) => {
-            console.error("Error submitting form:", error);
-          });
+      document
+        .getElementById("inquiryForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const form = event.target;
+          const formData = new FormData(form);
+          fetch(
+            "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_Lf5UxcUb1mswgWyHVMtlfjjE1werx7ks0StKVsiPK0PaYQ/formResponse",
+            {
+              method: "POST",
+              body: formData,
+              mode: "no-cors",
+            }
+          )
+            .then(() => {
+              document.getElementById("formSuccess").style.display = "block";
+              form.reset();
+              // Clear improved UI selections
+              selectedModelsSet.clear();
+              updateSelectedModelsUI();
+              // Close modal after 2 seconds
+              setTimeout(() => {
+                const modal = bootstrap.Modal.getInstance(
+                  document.getElementById("inquiryModal")
+                );
+                modal.hide();
+              }, 2000);
+            })
+            .catch((error) => {
+              console.error("Error submitting form:", error);
+            });
+        });
+
+      // JavaScript for Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      // Show or hide the button based on scroll position
+      window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > 300) {
+          backToTopBtn.style.display = "flex"; // Using flex to center the arrow
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+
+      // Smooth scroll to top on click
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       });
     </script>
   </body>
