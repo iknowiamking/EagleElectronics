@@ -23,12 +23,23 @@
       type="image/png"
       href="/favicon_io/android-chrome-512x512.png"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <style>
+      .sticky-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: white; /* Or your navbar color */
+      }
+
       .navbar-brand {
         font-size: 1.75rem;
         font-weight: bold;
@@ -89,6 +100,44 @@
           font-size: 1rem;
         }
       }
+
+      /* CTA Section Styles */
+      #cta {
+        background-color: #f8f9fa;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      #cta h2 {
+        font-size: 2rem; /* same as .hero-overlay h1 */
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      #cta p {
+        font-size: 1rem; /* same as .hero-overlay h5 */
+        margin-bottom: 2rem;
+      }
+
+      #cta a.btn {
+        font-size: 1.1rem; /* matching .hero-overlay a.btn */
+      }
+
+      /* Media Queries for smaller screens */
+      @media (max-width: 576px) {
+        #cta h2 {
+          font-size: 1.1rem;
+        }
+
+        #cta p {
+          font-size: 0.7rem;
+        }
+
+        #cta a.btn {
+          font-size: 0.7rem;
+        }
+      }
+
       /* Style for selected model tiles */
       .selected-model-tile {
         background-color: #0d6efd;
@@ -101,31 +150,139 @@
         color: #fff;
         font-weight: bold;
       }
+      /* button */
       .back-to-top {
         position: fixed;
-        bottom: 20px;
+        bottom: 30px;
         right: 20px;
         background-color: #0d6efd;
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        display: none; /* Hidden by default */
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        display: none;
         align-items: center;
         justify-content: center;
         z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
       }
+
       .back-to-top:hover {
-        background-color: #0b5ed7;
-        cursor: pointer;
+        background-color: #084298;
+        transform: translateY(-3px);
+      }
+
+      /* Testimonials Carousel Container */
+      .testimonials-wrapper {
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* The track for the testimonials, set to scroll manually on mobile */
+      .testimonials-track {
+        display: flex;
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        padding-bottom: 1rem; /* extra space for snap */
+      }
+
+      /* Testimonial card styles */
+      .testimonial-card {
+        flex: 0 0 auto; /* Prevent items from shrinking or growing */
+        scroll-snap-align: start;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        background: #fff;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+
+      /* On hover, scale up slightly */
+      .testimonial-card:hover {
+        transform: scale(1.02);
+      }
+
+      /* Card content styling */
+      .testimonial-card .card-text {
+        font-size: 1rem;
+        font-style: italic;
+      }
+
+      .testimonial-card p.text-end {
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 1rem;
+      }
+
+      /* Circle Indicators */
+      .testimonials-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+        background: #ccc;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background 0.3s;
+      }
+
+      .indicator.active {
+        background: #0d6efd;
+      }
+
+      /* Adjust testimonial card width for mobile */
+      @media (max-width: 576px) {
+        .testimonial-card {
+          width: 80%; /* Adjust as desired; this makes one card fit best in view */
+        }
+      }
+
+      /* On larger screens, show multiple testimonials per view */
+      @media (min-width: 577px) {
+        .testimonial-card {
+          width: 300px; /* Fixed width for desktop layout */
+        }
+      }
+
+      @media (min-width: 768px) {
+        .testimonials-wrapper {
+          overflow: visible;
+        }
+
+        .testimonials-track {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1.5rem;
+          overflow: visible;
+          scroll-snap-type: none;
+        }
+
+        .testimonial-card {
+          width: 300px; /* Keep it neat */
+          scroll-snap-align: unset;
+        }
+
+        .testimonials-indicators {
+          display: none; /* Hide indicators on desktop */
+        }
       }
     </style>
   </head>
   <body>
     <!-- Header -->
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
       <div class="container">
         <a class="navbar-brand" href="#">Phoenix Electronics</a>
         <button
@@ -143,6 +300,9 @@
               <a class="nav-link" href="#catalog">Catalog</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#footer">Contact</a>
             </li>
             <li class="nav-item">
@@ -153,7 +313,9 @@
       </div>
     </header>
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">&uarr;</button>
+    <button id="backToTop" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- Hero Section -->
     <section
@@ -170,6 +332,20 @@
         <h1>Exclusive Deals on Samsung Monitors</h1>
         <h5>Low Price(s) Guarantee, Free Delivery & Installation</h5>
         <a href="#catalog" class="btn btn-light btn-lg">View Deals</a>
+      </div>
+    </section>
+    <!-- Call Now CTA Section -->
+    <section
+      id="cta"
+      class="py-4 text-center"
+      style="background-color: #f8f9fa"
+    >
+      <div class="container">
+        <h2 class="mb-3">Have Questions? Want to Buy? Give Us a Call!</h2>
+        <p class="mb-4">
+          Our experts are standing by to help you choose the perfect monitor.
+        </p>
+        <a href="tel:+917540022142" class="btn btn-lg btn-primary">Call Now</a>
       </div>
     </section>
 
@@ -273,7 +449,7 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
+                <label for="address" class="form-label">Address/Pincode</label>
                 <textarea
                   class="form-control"
                   id="address"
@@ -319,7 +495,9 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
+                <label for="message" class="form-label"
+                  >Additional Message</label
+                >
                 <textarea
                   class="form-control"
                   id="message"
@@ -335,12 +513,91 @@
                 style="display: none"
               >
                 Thank you! Your inquiry has been submitted.
+                We will reach out in 24hours.
               </p>
             </form>
           </div>
         </div>
       </div>
     </div>
+    <!-- Testimonials Carousel Section -->
+    <section id="testimonials-carousel" class="container my-5">
+      <h2 class="text-center mb-4">What Our Customers Say</h2>
+      <div class="testimonials-wrapper">
+        <div class="testimonials-track">
+          <!-- Testimonial Cards -->
+          <div
+            class="card testimonial-card d-flex flex-column justify-content-between"
+          >
+            <div class="card-body d-flex flex-column justify-content-between">
+              <p class="card-text">
+                "Phoenix Electronics delivered unbeatable deals and excellent
+                service!"
+              </p>
+              <p class="text-end mb-0 mt-auto"><strong>- Vignesh</strong></p>
+            </div>
+          </div>
+
+          <div
+            class="card testimonial-card d-flex flex-column justify-content-between"
+          >
+            <div class="card-body d-flex flex-column justify-content-between">
+              <p class="card-text">
+                "I love my new Samsung monitor and ofc at THE LOWEST price!"
+              </p>
+              <p class="text-end mb-0 mt-auto"><strong>- Aashrith</strong></p>
+            </div>
+          </div>
+
+          <div
+            class="card testimonial-card d-flex flex-column justify-content-between"
+          >
+            <div class="card-body d-flex flex-column justify-content-between">
+              <p class="card-text">
+                "Great prices and quality products. Good."
+              </p>
+              <p class="text-end mb-0 mt-auto">
+                <strong>- DuraiChandran</strong>
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="card testimonial-card d-flex flex-column justify-content-between"
+          >
+            <div class="card-body d-flex flex-column justify-content-between">
+              <p class="card-text">
+                "Unmatched customer service and My workspace has never looked
+                better."
+              </p>
+              <p class="text-end mb-0 mt-auto"><strong>- Priya</strong></p>
+            </div>
+          </div>
+
+          <div
+            class="card testimonial-card d-flex flex-column justify-content-between"
+          >
+            <div class="card-body d-flex flex-column justify-content-between">
+              <p class="card-text">
+                "I gave a missed call and they followed up in an hour! Love
+                it!!"
+              </p>
+              <p class="text-end mb-0 mt-auto"><strong>- Ananya</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicators -->
+      <div class="testimonials-indicators text-center mt-3">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+      </div>
+    </section>
+
     <!-- About Us Section -->
     <section id="about" class="container my-5">
       <h2 class="text-center mb-4">Why Choose Phoenix Electronics?</h2>
@@ -675,7 +932,7 @@
                   document.getElementById("inquiryModal")
                 );
                 modal.hide();
-              }, 2000);
+              }, 4000);
             })
             .catch((error) => {
               console.error("Error submitting form:", error);
@@ -699,6 +956,27 @@
         window.scrollTo({
           top: 0,
           behavior: "smooth",
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const track = document.querySelector(".testimonials-track");
+        const indicators = document.querySelectorAll(".indicator");
+        // Assume each card plus gap is the card width. Adjust the gap if needed.
+        let card = track.querySelector(".testimonial-card");
+
+        if (!card) return;
+
+        const cardWidth = card.offsetWidth + 16; // 16 accounts for the gap (adjust if you change the gap)
+
+        track.addEventListener("scroll", function () {
+          const index = Math.round(track.scrollLeft / cardWidth);
+          indicators.forEach((indicator) =>
+            indicator.classList.remove("active")
+          );
+          if (indicators[index]) {
+            indicators[index].classList.add("active");
+          }
         });
       });
     </script>

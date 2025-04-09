@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-R0RFQCY8GK"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-R0RFQCY8GK");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Phoenix Electronics</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon_io/android-chrome-512x512.png"
+    />
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Same CSS as the main site -->
+    <style>
+      .navbar-brand {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+      .navbar-nav .nav-link {
+        font-size: 1.125rem;
+        font-weight: 500;
+        padding: 0.75rem 1rem;
+      }
+
+      .hero {
+        background-color: #0051a8;
+        color: white;
+        position: relative;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+      }
+      .hero-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .hero-overlay h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .hero-overlay h5 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 2rem;
+      }
+      .hero-overlay a.btn {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem 2rem;
+      }
+      @media (max-width: 576px) {
+        .hero {
+          min-height: 200px;
+        }
+        .hero-overlay h1 {
+          font-size: 1.5rem;
+        }
+        .hero-overlay h5 {
+          font-size: 1rem;
+        }
+        .hero-overlay p {
+          font-size: 1rem;
+        }
+        .hero-overlay a.btn {
+          font-size: 1rem;
+        }
+      }
+
+      /* Footer Styles (same as main site) */
+      #footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header (Same Navbar as Main Page) -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Phoenix Electronics</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <!-- Use the same links -->
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#catalog">Catalog</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="blog.html">Blog</a>
+              </li>
+            <li class="nav-item"><a class="nav-link" href="index.html#footer">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Blog Hero Section (Style matches the main hero style) -->
+    <section
+      class="hero text-center py-5"
+      style="
+        background-image: url('blog-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        image-rendering: crisp-edges;
+      "
+    >
+      <div class="container hero-overlay">
+        <h1>Our Blog</h1>
+        <h5>Latest updates, tips, and insights from Phoenix Electronics</h5>
+      </div>
+    </section>
+
+    <!-- Blog Content Section -->
+    <section class="container my-5">
+      <!-- Example Blog Post -->
+      <article class="mb-5">
+        <h2>Will Be updated soon!</h2>
+        <p>
+          This is a sample blog post.
+        </p>
+      </article>
+      <!-- Add additional blog posts here -->
+    </section>
+
+    <!-- Footer (Same as Main Site) -->
+    <footer id="footer" class="bg-light text-center py-3">
+      <h5><strong>Contact us: +91 9176645754 || +91 7540022142</strong></h5>
+      <p>
+        Address: Phoenix Electronics, 45B, Vaikasi Street, Chinmaya Nagar,
+        Virugambakkam, Chennai, TamilNadu - 600092
+      </p>
+      <a href="https://wa.me/7540022142" class="btn btn-success btn-sm">Chat on WhatsApp</a>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
