@@ -281,6 +281,27 @@
     </style>
   </head>
   <body>
+
+    <!-- Download catalog pop up -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="downloadToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true"
+           style="background-color: #0c2c4a;">
+        <div class="d-flex">
+          <div class="toast-body" style="color: #3aaefc;">
+            Your download has started!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showDownloadToast() {
+        const toast = new bootstrap.Toast(document.getElementById('downloadToast'));
+        toast.show();
+      }
+    </script>
+    
+
     <!-- Header -->
     <header class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
       <div class="container">
@@ -297,8 +318,9 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#catalog">Catalog</a>
+              <a class="nav-link" href="catalogue/April2025.pdf" download onclick="showDownloadToast()">Catalog</a>
             </li>
+            
             <li class="nav-item">
               <a class="nav-link" href="blog.html">Blog</a>
             </li>
@@ -312,6 +334,7 @@
         </div>
       </div>
     </header>
+
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top">
       <i class="fas fa-chevron-up"></i>
@@ -321,7 +344,7 @@
     <section
       class="hero text-center py-5"
       style="
-        background-image: url('bg2.jpg');
+        background-image: url('Hero-banner.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
